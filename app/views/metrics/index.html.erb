@@ -24,10 +24,13 @@
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Chin-ups</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pull-ups</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Handstand</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Wall Sit</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Flex</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Toe Reach</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">50yd</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1mi</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shuttle</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jump Rope</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vert</th>
                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rope</th>
               </tr>
@@ -60,7 +63,13 @@
                     <%= entry.handstand_seconds ? "#{entry.handstand_seconds}s" : "-" %>
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <%= entry.wall_sit_seconds ? "#{entry.wall_sit_seconds}s" : "-" %>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                     <%= entry.flexibility_inches ? "#{entry.flexibility_inches}\"" : "-" %>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <%= entry.toe_reach_inches ? "#{entry.toe_reach_inches}\"" : "-" %>
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                     <%= entry.fifty_yard_dash_seconds ? "#{entry.fifty_yard_dash_seconds}s" : "-" %>
@@ -76,6 +85,9 @@
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                     <%= entry.shuttle_run_seconds ? "#{entry.shuttle_run_seconds}s" : "-" %>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <%= entry.jump_rope_reps || "-" %>
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                     <%= entry.vertical_jump_inches ? "#{entry.vertical_jump_inches}\"" : "-" %>
