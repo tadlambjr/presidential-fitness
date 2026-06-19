@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t presidential_fitness .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name presidential_fitness presidential_fitness
+# docker build -t presidential-fitness .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name presidential-fitness presidential-fitness
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
@@ -39,7 +39,11 @@ RUN apt-get update -qq && \
 COPY vendor/* ./vendor/
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle install && \
+# Use 4 parallel jobs for bundle install to compile native extensions concurrently.
+# Note: the QEMU bug only affects bootsnap precompile (handled below with -j 1).
+RUN bundle config set without 'development test' && \
+    bundle config set --local jobs 4 && \
+    bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
     bundle exec bootsnap precompile -j 1 --gemfile
@@ -54,9 +58,6 @@ RUN bundle exec bootsnap precompile -j 1 app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
-
-
 # Final stage for app image
 FROM base
 
@@ -68,10 +69,12 @@ USER 1000:1000
 # Copy built artifacts: gems, application
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
+RUN chown -R rails:rails db log storage tmp public
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start server via Thruster by default, this can be overwritten at runtime
+# Start the server
 EXPOSE 80
+
 CMD ["./bin/thrust", "./bin/rails", "server"]
