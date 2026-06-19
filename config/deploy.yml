@@ -14,11 +14,16 @@ servers:
 
 proxy:
   ssl: true
-  host: fitness.roaringlambproductions.com
+  hosts:
+    - fitness.roaringlambproductions.com
+  app_port: 80
+  forward_headers: true
   healthcheck:
     path: /up
     interval: 5
-    timeout: 90
+    timeout: 60
+
+retain_containers: 2
 
 # GitHub Container Registry for Docker images
 registry:
@@ -31,12 +36,32 @@ env:
   secret:
     - RAILS_MASTER_KEY
   clear:
-    RAILS_ENV: production
-    RAILS_SERVE_STATIC_FILES: true
+    # Set the host for URL generation (staging environment)
+    APP_HOST: fitness.roaringlambproductions.com
+
+    # Database prefix for SQLite service databases (queue, cache, cable)
+    DATABASE_PREFIX: presidential_fitness_staging
+
+    # Disable Solid Queue in staging - insufficient resources on shared server
+    SOLID_QUEUE_IN_PUMA: "false"
+    PORT: 3003
+
+    # Skip db:prepare to speed up deployment boot time
+    SKIP_DB_PREPARE: "false"
+
+    # Optimize for low traffic (max 2 concurrent users)
+    WEB_CONCURRENCY: 0
+    RAILS_MAX_THREADS: 2
+
+    # Memory management for shared server
     MALLOC_ARENA_MAX: 2
     RUBY_GC_HEAP_GROWTH_FACTOR: 1.1
     RUBY_GC_HEAP_GROWTH_MAX_SLOTS: 5000
     RUBY_GC_MALLOC_LIMIT: 16777216
+
+    # Reduce Rails memory footprint
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -44,11 +69,12 @@ aliases:
   console: app exec --interactive --reuse "bin/rails console"
   shell: app exec --interactive --reuse "bash"
   logs: app logs -f
-  dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+  prune-all: prune all
+  prune-images: prune images
 
 volumes:
-  - "/var/lib/presidential-fitness/storage:/rails/storage"
-  - "/var/lib/presidential-fitness_logs:/rails/log"
+  - "presidential-fitness_storage:/rails/storage"
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
@@ -58,6 +84,8 @@ asset_path: /rails/public/assets
 builder:
   context: .
   arch: amd64
+  # Build on the server to avoid pushing images over the network
+  remote: ssh://roaringlamb@roaring-lamb-staging
   args:
     RUBY_VERSION: 4.0.1
   secrets:
