@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  instructions: MyString
+  measures: MyString
+  unit: MyString
+  boys_90pct: MyString
+  girls_90pct: MyString
+  notes: MyText
+
+two:
+  name: MyString
+  instructions: MyString
+  measures: MyString
+  unit: MyString
+  boys_90pct: MyString
+  girls_90pct: MyString
+  notes: MyText

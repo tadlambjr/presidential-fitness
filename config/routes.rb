@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
-  resources :metrics, only: [:index, :new, :create]
+  resources :metrics, only: [ :index, :new, :create ]
+
+  # PDF downloads
+  get "downloads/individual-performance-log", to: "downloads#individual_performance_log"
+  get "downloads/group-assessment-template", to: "downloads#group_assessment_template"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

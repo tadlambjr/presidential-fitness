@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_16_162651) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_19_135901) do
   create_table "metric_entries", force: :cascade do |t|
     t.decimal "broad_jump_inches"
     t.integer "chin_ups"
     t.datetime "created_at", null: false
     t.decimal "fifty_yard_dash_seconds"
-    t.decimal "flexibility_inches"
     t.integer "handstand_seconds"
     t.integer "jump_rope_reps"
     t.text "notes"
     t.integer "one_mile_run_seconds"
+    t.integer "plank_seconds"
     t.integer "pull_ups"
     t.integer "push_ups"
     t.date "recorded_on"
@@ -34,6 +34,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_162651) do
     t.decimal "vertical_jump_inches"
     t.integer "wall_sit_seconds"
     t.index ["user_id"], name: "index_metric_entries_on_user_id"
+  end
+
+  create_table "metrics", force: :cascade do |t|
+    t.string "boys_90pct"
+    t.datetime "created_at", null: false
+    t.string "girls_90pct"
+    t.string "instructions"
+    t.string "measures"
+    t.string "name"
+    t.text "notes"
+    t.string "unit"
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
