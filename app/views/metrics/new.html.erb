@@ -15,7 +15,7 @@
         </div>
       <% end %>
 
-      <%= form_with model: @metric_entry, local: true, class: "space-y-6" do |f| %>
+      <%= form_with model: @metric_entry, url: metrics_path, local: true, class: "space-y-6" do |f| %>
         <div class="border-b border-gray-200 pb-6">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Date</h2>
           <div>

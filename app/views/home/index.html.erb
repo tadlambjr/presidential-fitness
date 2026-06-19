@@ -1,138 +1,110 @@
-<div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-  <!-- Hero Section -->
-  <div class="bg-red-900 text-white py-16">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <div class="flex justify-center mb-4">
-        <!-- Simple flag-like stripes -->
-        <div class="w-64 h-2 bg-red-800"></div>
-        <div class="w-64 h-2 bg-gray-100"></div>
-        <div class="w-64 h-2 bg-blue-900"></div>
+<style>
+  .pf-panels { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .pf-tag-cloud { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; }
+  .pf-dl-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .pf-cta-row { display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+  @media (max-width: 767px) {
+    .pf-panels { grid-template-columns: 1fr; }
+    .pf-hero { padding: 2.25rem 1.25rem !important; }
+    .pf-emblem { width: 64px !important; height: 64px !important; margin-bottom: 1.25rem !important; }
+    .pf-emblem > span { font-size: 1.9rem !important; }
+    .pf-hero-eyebrow { font-size: 0.65rem !important; }
+    .pf-hero-tagline { font-size: 0.95rem !important; }
+    .pf-metrics-section { padding: 3rem 1.25rem !important; }
+    .pf-downloads-section { padding: 3rem 1.25rem !important; }
+    .pf-dl-row { flex-direction: column; align-items: stretch; }
+    .pf-dl-row a { text-align: center !important; }
+    .pf-cta-row { flex-direction: column; }
+    .pf-panel { padding: 2.25rem 1.5rem !important; }
+  }
+</style>
+
+<div style="font-family: Georgia, 'Times New Roman', serif;">
+
+  <%# === HERO — compact starfield === %>
+  <section class="pf-hero" style="background: linear-gradient(170deg, #1B2A4A 0%, #0f1e38 100%); padding: 3.5rem 2rem; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px, 30px 30px; background-position: 0 0, 15px 15px; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: #fff;"></div>
+
+    <div style="position: relative; z-index: 1; max-width: 740px; margin: 0 auto;">
+      <div class="pf-emblem" style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); margin-bottom: 1.5rem; position: relative;">
+        <div style="position: absolute; inset: 5px; border-radius: 50%; border: 1px solid rgba(255,215,0,0.4);"></div>
+        <span style="color: #FFD700; font-size: 2.4rem; line-height: 1; position: relative; z-index: 1;">★</span>
       </div>
-      <h1 class="text-5xl font-bold mb-4 tracking-tight">Presidential Fitness Test</h1>
-      <p class="text-xl text-red-100 mb-6">Maple Row Homestead Edition</p>
-      <p class="text-lg text-white/90 max-w-2xl mx-auto">
-        Track your fitness progress with the same standards of excellence as the President's National Fitness Test —
-        a tradition of achievement and performance at Maple Row Homestead.
-      </p>
+      <p class="pf-hero-eyebrow" style="color: rgba(255,255,255,0.55); font-family: sans-serif; letter-spacing: 7px; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">Maple Row Homestead Edition</p>
+      <h1 style="color: #fff; font-size: clamp(2.25rem, 6vw, 3.75rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.25rem; letter-spacing: -1px;">Presidential<br><span style="color: #B22234; font-style: italic;">Fitness Test</span></h1>
+      <p class="pf-hero-tagline" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.25rem; font-family: sans-serif; line-height: 1.8;">Track your fitness progress against our very own Presidential standard — where "Presidential" means the President of Maple Row Homestead, not Washington D.C. A tradition of challenge, improvement, and fun for everyone. And yes, it's completely free.</p>
+
+      <div class="pf-cta-row">
+        <% if logged_in? %>
+          <%= link_to "Performance Dashboard", metrics_path, style: "display: inline-block; background: #B22234; color: #fff; font-family: sans-serif; font-weight: 700; padding: 0.9rem 2.5rem; text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;" %>
+        <% else %>
+          <%= link_to "Get Started", signup_path, style: "display: inline-block; background: #B22234; color: #fff; font-family: sans-serif; font-weight: 700; padding: 0.9rem 2.5rem; text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;" %>
+          <%= link_to "Sign In →", login_path, style: "color: rgba(255,255,255,0.7); font-family: sans-serif; font-weight: 600; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px;" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <%# === THREE INFO PANELS === %>
+  <div class="pf-panels">
+    <div class="pf-panel" style="background: #B22234; padding: 3rem 2.25rem;">
+      <p style="color: rgba(255,255,255,0.55); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">About the Test</p>
+      <h2 style="color: #fff; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">A Tradition of Excellence</h2>
+      <p style="color: rgba(255,255,255,0.8); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">The Presidential Fitness Test is all in good fun — "Presidential" is a nod to the President of Maple Row Homestead, not the United States! The goal is to raise the bar for everyone through strength, endurance, flexibility, and speed.</p>
+    </div>
+    <div class="pf-panel" style="background: #1B2A4A; padding: 3rem 2.25rem;">
+      <p style="color: rgba(255,255,255,0.45); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">Performance Standards</p>
+      <h2 style="color: #fff; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">For Everyone Who Wants to Improve</h2>
+      <p style="color: rgba(255,255,255,0.75); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">Whether you're a first-timer or a fierce competitor, young or old — this test is designed to challenge and inspire everyone at Maple Row Homestead. Track your progress, celebrate every gain, and keep raising the bar. It's free for all.</p>
+    </div>
+    <div class="pf-panel" style="background: #f5f5f0; padding: 3rem 2.25rem;">
+      <p style="color: rgba(0,0,0,0.4); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">Performance Tracking</p>
+      <h2 style="color: #1B2A4A; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">Free Tracking Sheets</h2>
+      <p style="color: rgba(0,0,0,0.6); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin-bottom: 1.25rem;">Free tracking sheets available to download! These resources include:</p>
+      <ul style="color: rgba(0,0,0,0.65); font-family: sans-serif; font-size: 0.9rem; line-height: 1.8; padding-left: 1.25rem; margin: 0;">
+        <li>Individual performance log — detailed tracking for personal improvement</li>
+        <li>Group assessment template — great for family or group test days</li>
+      </ul>
     </div>
   </div>
 
-  <!-- About Section -->
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Performance Standards</h2>
-      <p class="text-gray-600 mb-4">
-        The Presidential Fitness Test represents the highest standards in physical assessment, measuring
-        strength, endurance, flexibility, and speed. This platform provides comprehensive tracking
-        across all established metrics with data-driven insights for performance optimization.
-      </p>
-      <p class="text-gray-600">
-        Designed for serious fitness tracking, whether you're training for competition, monitoring
-        health metrics, or pursuing excellence in physical performance.
-      </p>
-    </div>
-
-    <!-- Metrics Overview -->
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-3xl font-bold text-gray-800 mb-6">Performance Metrics</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Broad Jump (inches)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Pull-ups (max reps)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Plank (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">50-Yard Dash (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Vertical Jump (inches)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Push-ups (max reps)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Toe Reach (inches)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Shuttle Run (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Shot Put / Softball Throw (inches)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Sit-ups (60s max reps)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Wall Sit (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">1-Mile Run (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Chin-ups (max reps)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-blue-800 rounded-full"></div>
-          <span class="text-gray-700">Handstand Hold (seconds)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Jump Rope (60s max reps)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <div class="w-3 h-3 bg-red-800 rounded-full"></div>
-          <span class="text-gray-700">Rope Climb (seconds)</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PDF Downloads Section -->
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Performance Tracking</h2>
-      <p class="text-gray-600 mb-6">
-        Professional tracking sheets now available! These resources include:
-      </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
-        <li>Individual performance log — detailed metric tracking for personal optimization</li>
-        <li>Group assessment template — professional format for team testing events</li>
-      </ul>
-      <div class="flex space-x-4">
-        <%= link_to "Download Individual Performance Log", downloads_individual_performance_log_path, class: "bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-        <%= link_to "Download Group Assessment Template", downloads_group_assessment_template_path, class: "bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="text-center">
-      <% if logged_in? %>
-        <%= link_to "Performance Dashboard", metrics_path, class: "bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors" %>
-      <% else %>
-        <div class="space-y-4">
-          <div>
-            <%= link_to "Sign Up", signup_path, class: "bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors inline-block" %>
-          </div>
-          <div>
-            <%= link_to "Sign In", login_path, class: "text-blue-800 hover:text-blue-900 font-semibold text-lg" %>
-          </div>
-        </div>
+  <%# === METRICS TAG CLOUD === %>
+  <section class="pf-metrics-section" style="background: #fff; padding: 4rem 2rem; text-align: center; border-top: 1px solid #e8e8e8;">
+    <p style="color: #B22234; font-family: sans-serif; font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.6rem;">Performance Metrics</p>
+    <h2 style="color: #1B2A4A; font-size: 2rem; font-weight: 700; margin-bottom: 2.25rem; letter-spacing: -0.5px;">16 Categories Tracked</h2>
+    <div class="pf-tag-cloud" style="max-width: 860px; margin: 0 auto;">
+      <% [
+        ["Broad Jump (inches)", true], ["Pull-ups (max reps)", false], ["Plank (seconds)", true],
+        ["50-Yard Dash (seconds)", false], ["Vertical Jump (inches)", true], ["Push-ups (max reps)", false],
+        ["Toe Reach (inches)", false], ["Shuttle Run (seconds)", true], ["Shot Put / Softball Throw (inches)", false],
+        ["Sit-ups (60s max reps)", false], ["Wall Sit (seconds)", false], ["1-Mile Run (seconds)", true],
+        ["Chin-ups (max reps)", true], ["Handstand Hold (seconds)", true], ["Jump Rope (60s max reps)", false],
+        ["Rope Climb (seconds)", true]
+      ].each do |label, navy| %>
+        <span style="display: inline-block; background: <%= navy ? '#1B2A4A' : '#B22234' %>; color: #fff; font-family: sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; padding: 0.5rem 1.1rem;"><%= label %></span>
       <% end %>
     </div>
-  </div>
+  </section>
+
+  <%# === DOWNLOADS + CTA === %>
+  <section class="pf-downloads-section" style="background: #1B2A4A; padding: 4rem 2rem; text-align: center;">
+    <p style="color: rgba(255,255,255,0.5); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.6rem;">Official Resources</p>
+    <h2 style="color: #fff; font-size: 2rem; font-weight: 700; margin-bottom: 0.6rem;">Free Tracking Sheets</h2>
+    <p style="color: rgba(255,255,255,0.65); font-family: sans-serif; margin-bottom: 2.25rem; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.75;">Download free tracking sheets for individual athletes and group test days. No sign-up required.</p>
+    <div class="pf-dl-row" style="margin-bottom: 2.5rem;">
+      <%= link_to "↓ Individual Performance Log", downloads_individual_performance_log_path, style: "display: inline-block; background: #B22234; color: #fff; padding: 0.9rem 2rem; text-decoration: none; font-family: sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;" %>
+      <%= link_to "↓ Group Assessment Template", downloads_group_assessment_template_path, style: "display: inline-block; border: 2px solid rgba(255,255,255,0.4); color: #fff; padding: 0.9rem 2rem; text-decoration: none; font-family: sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;" %>
+    </div>
+    <% unless logged_in? %>
+      <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 2.25rem;">
+        <p style="color: rgba(255,255,255,0.5); font-family: sans-serif; font-size: 0.85rem; margin-bottom: 1.25rem;">Ready to start tracking? It's completely free — create an account in seconds.</p>
+        <div class="pf-cta-row">
+          <%= link_to "Create Account", signup_path, style: "display: inline-block; background: #fff; color: #1B2A4A; font-family: sans-serif; font-weight: 700; padding: 0.9rem 2.5rem; text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;" %>
+          <%= link_to "Sign In", login_path, style: "color: rgba(255,255,255,0.65); font-family: sans-serif; font-weight: 600; text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 1px;" %>
+        </div>
+      </div>
+    <% end %>
+  </section>
 </div>
