@@ -39,3 +39,4 @@
 !/app/assets/builds/.keep
 
 /.kamal/secrets-common
+development.sqlite3

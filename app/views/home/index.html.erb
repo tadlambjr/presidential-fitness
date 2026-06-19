@@ -34,7 +34,8 @@
       </div>
       <p class="pf-hero-eyebrow" style="color: rgba(255,255,255,0.55); font-family: sans-serif; letter-spacing: 7px; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">Maple Row Homestead Edition</p>
       <h1 style="color: #fff; font-size: clamp(2.25rem, 6vw, 3.75rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.25rem; letter-spacing: -1px;">Presidential<br><span style="color: #B22234; font-style: italic;">Fitness Test</span></h1>
-      <p class="pf-hero-tagline" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.25rem; font-family: sans-serif; line-height: 1.8;">Track your fitness progress against our very own Presidential standard — where "Presidential" means the President of Maple Row Homestead, not Washington D.C. A tradition of challenge, improvement, and fun for everyone. And yes, it's completely free.</p>
+      <p class="pf-hero-tagline" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.25rem; font-family: sans-serif; line-height: 1.8;">Track your fitness progress against our very own Presidential standard — where "Presidential" means the President of Maple Row Homestead, not the United States of America.</p>
+      <p class="pf-hero-tagline" style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.25rem; font-family: sans-serif; line-height: 1.8;">A tradition of challenge, improvement, and fun for everyone. And yes, it's completely free.</p>
 
       <div class="pf-cta-row">
         <% if logged_in? %>
@@ -52,19 +53,20 @@
     <div class="pf-panel" style="background: #B22234; padding: 3rem 2.25rem;">
       <p style="color: rgba(255,255,255,0.55); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">About the Test</p>
       <h2 style="color: #fff; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">A Tradition of Excellence</h2>
-      <p style="color: rgba(255,255,255,0.8); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">The Presidential Fitness Test is all in good fun — "Presidential" is a nod to the President of Maple Row Homestead, not the United States! The goal is to raise the bar for everyone through strength, endurance, flexibility, and speed.</p>
+      <p style="color: rgba(255,255,255,0.8); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">This Presidential Fitness Test is all in good fun. The goal is to raise the bar for everyone through strength, endurance, flexibility, and speed.</p>
     </div>
     <div class="pf-panel" style="background: #1B2A4A; padding: 3rem 2.25rem;">
       <p style="color: rgba(255,255,255,0.45); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">Performance Standards</p>
       <h2 style="color: #fff; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">For Everyone Who Wants to Improve</h2>
-      <p style="color: rgba(255,255,255,0.75); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">Whether you're a first-timer or a fierce competitor, young or old — this test is designed to challenge and inspire everyone at Maple Row Homestead. Track your progress, celebrate every gain, and keep raising the bar. It's free for all.</p>
+      <p style="color: rgba(255,255,255,0.75); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin: 0;">Whether you're a first-timer or a fierce competitor, young or old — this test is designed to challenge and inspire you. Track your progress, celebrate every gain, and keep raising the bar.</p>
     </div>
     <div class="pf-panel" style="background: #f5f5f0; padding: 3rem 2.25rem;">
       <p style="color: rgba(0,0,0,0.4); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem;">Performance Tracking</p>
       <h2 style="color: #1B2A4A; font-size: 1.55rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.1rem;">Free Tracking Sheets</h2>
-      <p style="color: rgba(0,0,0,0.6); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin-bottom: 1.25rem;">Free tracking sheets available to download! These resources include:</p>
+      <p style="color: rgba(0,0,0,0.6); font-family: sans-serif; line-height: 1.75; font-size: 0.95rem; margin-bottom: 1.25rem;">Free tracking sheets available to download, or create a free account to track your stats online! These resources include:</p>
       <ul style="color: rgba(0,0,0,0.65); font-family: sans-serif; font-size: 0.9rem; line-height: 1.8; padding-left: 1.25rem; margin: 0;">
-        <li>Individual performance log — detailed tracking for personal improvement</li>
+        <li>Online stat tracking — log results and watch your progress over time</li>
+        <li>Individual performance log — printable sheet for personal improvement</li>
         <li>Group assessment template — great for family or group test days</li>
       </ul>
     </div>
@@ -76,12 +78,12 @@
     <h2 style="color: #1B2A4A; font-size: 2rem; font-weight: 700; margin-bottom: 2.25rem; letter-spacing: -0.5px;">16 Categories Tracked</h2>
     <div class="pf-tag-cloud" style="max-width: 860px; margin: 0 auto;">
       <% [
-        ["Broad Jump (inches)", true], ["Pull-ups (max reps)", false], ["Plank (seconds)", true],
-        ["50-Yard Dash (seconds)", false], ["Vertical Jump (inches)", true], ["Push-ups (max reps)", false],
-        ["Toe Reach (inches)", false], ["Shuttle Run (seconds)", true], ["Shot Put / Softball Throw (inches)", false],
-        ["Sit-ups (60s max reps)", false], ["Wall Sit (seconds)", false], ["1-Mile Run (seconds)", true],
-        ["Chin-ups (max reps)", true], ["Handstand Hold (seconds)", true], ["Jump Rope (60s max reps)", false],
-        ["Rope Climb (seconds)", true]
+        ["Broad Jump", true], ["Pull-ups", false], ["Plank", true],
+        ["50-Yard Dash", false], ["Vertical Jump", true], ["Push-ups", false],
+        ["Toe Reach", false], ["Shuttle Run", true], ["Shot Put / Softball Throw", false],
+        ["Sit-ups", false], ["Wall Sit", false], ["1-Mile Run", true],
+        ["Chin-ups", true], ["Handstand Hold", true], ["Jump Rope", false],
+        ["Rope Climb", true]
       ].each do |label, navy| %>
         <span style="display: inline-block; background: <%= navy ? '#1B2A4A' : '#B22234' %>; color: #fff; font-family: sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; padding: 0.5rem 1.1rem;"><%= label %></span>
       <% end %>
