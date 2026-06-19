@@ -26,7 +26,7 @@ BLOCKED_PATHS = %w[
   server-status server-info
   trace debug phpinfo
   swagger api-docs openapi.json
-  actuator health env beans metrics
+  actuator health env beans
 
   .sql .zip .tar.gz .bak .backup
   .ds_store
@@ -76,12 +76,12 @@ Rack::Attack.blocklist("block repeated failed logins") do |req|
   end
 end
 
-Rack::Attack.blocklisted_responder = lambda do |env|
-  Rails.logger.warn "[Rack::Attack] Blocked: #{env["rack.attack.matched"]} ip=#{env["REMOTE_ADDR"]} path=#{env["PATH_INFO"]}"
+Rack::Attack.blocklisted_responder = lambda do |req|
+  Rails.logger.warn "[Rack::Attack] Blocked: #{req.env['rack.attack.matched']} ip=#{req.ip} path=#{req.path}"
   [ 403, { "Content-Type" => "text/plain" }, [ "Forbidden" ] ]
 end
 
-Rack::Attack.throttled_responder = lambda do |env|
-  Rails.logger.warn "[Rack::Attack] Throttled: #{env["rack.attack.matched"]} ip=#{env["REMOTE_ADDR"]} path=#{env["PATH_INFO"]}"
+Rack::Attack.throttled_responder = lambda do |req|
+  Rails.logger.warn "[Rack::Attack] Throttled: #{req.env['rack.attack.matched']} ip=#{req.ip} path=#{req.path}"
   [ 429, { "Content-Type" => "text/plain", "Retry-After" => "60" }, [ "Rate limit exceeded" ] ]
 end
