@@ -42,7 +42,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # PDF generation for tracking sheets
-gem "prawn", "~> 2.4"
+gem "prawn", "~> 2.5"
 gem "prawn-table", "~> 0.2"
 gem "matrix", "~> 0.4"
 gem "rack-attack"          # Rack middleware for blocking/throttling abusive requests
