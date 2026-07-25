@@ -5,31 +5,31 @@ metrics_data = [
     instructions: "Stand behind a line, swing arms, bend knees, and jump forward as far as possible; measure the best jump of 2-3 attempts.",
     measures: "Lower-body explosive power",
     unit: "inches",
-    boys_90pct: "78",
-    girls_90pct: "68",
+    boys_90pct: %(6' 6"),
+    girls_90pct: %(5' 8),
     notes: "Approximate blended target; based on standing long jump style norms."
   },
   {
     name: "Shot Put / Softball Throw",
-    instructions: "Throw a ball from a set start with a legal overhead or chest-style motion, depending on protocol; measure best of 2-3 throws.",
+    instructions: "Throw shot or ball from a set start with overhead or chest-style motion, depending on protocol; measure best of 2-3 throws.",
     measures: "Upper-body power",
-    unit: "inches",
-    boys_90pct: "290",
-    girls_90pct: "240",
+    unit: "",
+    boys_90pct: %(24'),
+    girls_90pct: %(20'),
     notes: "Approximate blended target; exact implement and age matter a lot."
   },
   {
     name: "Push-ups",
-    instructions: "Lower body in plank, lower chest to proper depth, and return to full arm extension; count valid reps.",
+    instructions: "Lower body in plank position, lower chest to ground, and return to full arm extension; count reps.",
     measures: "Upper-body endurance",
     unit: "reps",
-    boys_90pct: "35",
-    girls_90pct: "20",
+    boys_90pct: "40",
+    girls_90pct: "25",
     notes: "Approximate blended target; right-angle style standards can differ."
   },
   {
     name: "Sit-ups (60s max reps)",
-    instructions: "Lie back, bend knees, and sit up repeatedly for 60 seconds with valid form.",
+    instructions: "Lie back, bend knees, and sit up repeatedly for 60 seconds.",
     measures: "Core endurance",
     unit: "reps",
     boys_90pct: "50",
@@ -38,7 +38,7 @@ metrics_data = [
   },
   {
     name: "Chin-ups",
-    instructions: "Hang with palms facing you, pull until chin clears the bar; count valid reps.",
+    instructions: "Hang with palms facing you, pull until chin clears the bar; count reps.",
     measures: "Upper-body pulling strength",
     unit: "reps",
     boys_90pct: "12",
@@ -47,7 +47,7 @@ metrics_data = [
   },
   {
     name: "Pull-ups",
-    instructions: "Hang with palms away, pull until chin clears the bar; count valid reps.",
+    instructions: "Hang with palms away, pull until chin clears the bar; count reps.",
     measures: "Upper-body pulling strength",
     unit: "reps",
     boys_90pct: "10",
@@ -83,7 +83,7 @@ metrics_data = [
   },
   {
     name: "50-Yard Dash",
-    instructions: "Sprint 50 yards from a start; record the fastest legal time.",
+    instructions: "Sprint 50 yards from a start; record the fastest time.",
     measures: "Speed",
     unit: "seconds",
     boys_90pct: "7.2",
@@ -101,7 +101,7 @@ metrics_data = [
   },
   {
     name: "Shuttle Run",
-    instructions: "Sprint back and forth between markers, touching lines or picking up blocks per protocol; record time.",
+    instructions: "Sprint back and forth between markers 20 ft apart, touching lines or picking up blocks per protocol; record time.",
     measures: "Agility and speed",
     unit: "seconds",
     boys_90pct: "10.5",
@@ -110,7 +110,7 @@ metrics_data = [
   },
   {
     name: "Jump Rope (60s max reps)",
-    instructions: "Perform consecutive jump-rope revolutions or skips in 60 seconds; count valid jumps.",
+    instructions: "Perform consecutive jump-rope revolutions or skips in 60 seconds.",
     measures: "Coordination and cardio endurance",
     unit: "reps",
     boys_90pct: "140",
@@ -128,20 +128,20 @@ metrics_data = [
   },
   {
     name: "Rope Climb",
-    instructions: "Climb a rope from the floor to a set point or top; record time or completion.",
+    instructions: "Climb the rope to the mark.",
     measures: "Upper-body and grip endurance",
-    unit: "seconds",
-    boys_90pct: "12",
-    girls_90pct: "18",
+    unit: "",
+    boys_90pct: "20ft mark",
+    girls_90pct: "15ft mark",
     notes: "Approximate blended target; completion-based tests are also common."
   },
   {
     name: "Plank",
-    instructions: "Hold a straight-arm plank position with body in a straight line from head to heels; time until form breaks.",
+    instructions: "Hold a straight-arm or elbow (choose which) plank position with body in a straight line from head to heels; time until form breaks.",
     measures: "Core endurance",
-    unit: "seconds",
-    boys_90pct: "180",
-    girls_90pct: "150",
+    unit: "minutes",
+    boys_90pct: "3",
+    girls_90pct: "2.5",
     notes: "Target standard for plank hold time; based on general fitness recommendations."
   }
 ]

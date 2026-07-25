@@ -72,22 +72,22 @@ namespace :generate_pdfs do
 
     # Interleaved exercises with full-width info rows and measurement rows
     exercises = [
-      {name: "Broad Jump", target: "78\"/68\"", unit: "inches", instruction: "Stand behind line, swing arms, jump forward; measure best 2-3 attempts"},
-      {name: "Pull-ups", target: "10/2", unit: "reps", instruction: "Hang palms away, pull until chin clears bar; count valid reps"},
-      {name: "Plank", target: "180s/150s", unit: "seconds", instruction: "Hold straight-arm plank; time until form breaks"},
-      {name: "50-Yard Dash", target: "7.2s/7.8s", unit: "seconds", instruction: "Sprint 50 yards from start; record fastest legal time"},
+      {name: "Broad Jump", target: %(6' 6"/5' 8"), unit: "inches", instruction: "Stand behind line, swing arms, jump forward; measure best 2-3 attempts"},
+      {name: "Pull-ups", target: "10/2", unit: "reps", instruction: "Hang palms away, pull until chin clears bar; count reps"},
+      {name: "Plank", target: "3m/2.5m", unit: "minutes", instruction: "Hold straight-arm or elbow (choose which) plank; time until form breaks"},
+      {name: "50-Yard Dash", target: "7.2s/7.8s", unit: "seconds", instruction: "Sprint 50 yards from start; record fastest time"},
       {name: "Vertical Jump", target: "20\"/16\"", unit: "inches", instruction: "Start flat-footed, jump straight up; measure vertical displacement"},
-      {name: "Push-ups", target: "35/20", unit: "reps", instruction: "Lower body in plank, lower chest to depth, return to extension; count valid reps"},
+      {name: "Push-ups", target: "40/25", unit: "reps", instruction: "Lower body in plank position, lower chest to ground, return to extension; count reps"},
       {name: "Toe Reach", target: "6\"/8\"", unit: "inches", instruction: "From standing or seated, reach toward toes; measure past or short of toes"},
-      {name: "Shuttle Run", target: "10.5s/11.3s", unit: "seconds", instruction: "Sprint back and forth between markers; record time"},
-      {name: "Shot Put", target: "290\"/240\"", unit: "inches", instruction: "Throw ball from start with legal motion; measure best of 2-3 throws"},
-      {name: "Sit-ups", target: "50/42", unit: "reps", instruction: "Lie back, bend knees, sit up repeatedly for 60 seconds; count valid reps"},
+      {name: "Shuttle Run", target: "10.5s/11.3s", unit: "seconds", instruction: "Sprint back and forth between markers 20 ft apart; record time"},
+      {name: "Shot Put", target: %(24'/20'), unit: "", instruction: "Throw shot or ball from start with overhead or chest-style motion; measure best of 2-3 throws"},
+      {name: "Sit-ups", target: "50/42", unit: "reps", instruction: "Lie back, bend knees, sit up repeatedly for 60 seconds; count reps"},
       {name: "Wall Sit", target: "120s/105s", unit: "seconds", instruction: "Back flat against wall, knees near 90°, hold as long as possible"},
       { name: "1-Mile Run", target: "6:30/7:30", unit: "minutes", instruction: "Run one mile as fast as possible; record finish time" },
-      {name: "Chin-ups", target: "12/4", unit: "reps", instruction: "Hang palms facing you, pull until chin clears bar; count valid reps"},
+      {name: "Chin-ups", target: "12/4", unit: "reps", instruction: "Hang palms facing you, pull until chin clears bar; count reps"},
       {name: "Handstand Hold", target: "20s/15s", unit: "seconds", instruction: "Kick up to stable handstand and hold; time from stable to loss of control"},
-      {name: "Jump Rope", target: "140/125", unit: "reps", instruction: "Perform consecutive jumps in 60 seconds; count valid jumps"},
-      {name: "Rope Climb", target: "12s/18s", unit: "seconds", instruction: "Climb rope from floor to set point; record time or completion"}
+      {name: "Jump Rope", target: "140/125", unit: "reps", instruction: "Perform consecutive jumps in 60 seconds"},
+      {name: "Rope Climb", target: "20ft/15ft mark", unit: "", instruction: "Climb the rope to the mark"}
     ]
 
     exercises.each do |exercise|
