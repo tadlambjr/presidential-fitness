@@ -76,12 +76,37 @@ Rack::Attack.blocklist("block repeated failed logins") do |req|
   end
 end
 
-Rack::Attack.blocklisted_responder = lambda do |req|
-  Rails.logger.warn "[Rack::Attack] Blocked: #{req.env['rack.attack.matched']} ip=#{req.ip} path=#{req.path}"
+Rack::Attack.blocklisted_responder = lambda do |env|
+  request = rack_attack_request(env)
+  log_attack("blocklisted", request, request.env)
   [ 403, { "Content-Type" => "text/plain" }, [ "Forbidden" ] ]
 end
 
-Rack::Attack.throttled_responder = lambda do |req|
-  Rails.logger.warn "[Rack::Attack] Throttled: #{req.env['rack.attack.matched']} ip=#{req.ip} path=#{req.path}"
+Rack::Attack.throttled_responder = lambda do |env|
+  request = rack_attack_request(env)
+  log_attack("throttled", request, request.env)
   [ 429, { "Content-Type" => "text/plain", "Retry-After" => "60" }, [ "Rate limit exceeded" ] ]
+end
+
+def rack_attack_request(env_or_request)
+  return env_or_request if env_or_request.respond_to?(:env)
+
+  Rack::Request.new(env_or_request)
+end
+
+def log_attack(action, request, env)
+  return unless defined?(ProductionLogManager)
+
+  ProductionLogManager.write_attack(
+    action: action,
+    ip: request.ip,
+    path: request.path,
+    method: request.request_method,
+    user_agent: request.user_agent.to_s,
+    rule: env["rack.attack.matched"],
+    discriminator: env["rack.attack.match_discriminator"],
+    timestamp: Time.current.utc.iso8601
+  )
+rescue => e
+  Rails.logger.error "Rack::Attack logging failed: #{e.message}"
 end

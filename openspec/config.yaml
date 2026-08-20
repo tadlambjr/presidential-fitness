@@ -1,0 +1,25 @@
+schema: spec-driven
+
+context: |
+  Product: Presidential Fitness — fitness tracking with cookie session[:user_id]
+  (no DB Session idle model). CSP initializer is stubbed/commented out.
+  No impersonation, API tokens, or file-import features.
+
+  Active change: harden-security-baseline (enable CSP; idle + absolute session).
+
+rules:
+  proposal:
+    - Include Non-goals
+    - Reference the RLP security audit findings this change addresses
+    - Call out human review gates before apply (CSP enforce, session lifetime)
+  specs:
+    - Use Given/When/Then scenarios
+    - Prefer ADDED/MODIFIED/REMOVED delta sections
+    - Reference existing auth/session patterns before inventing new ones
+  design:
+    - Prefer Rails Hotwire conventions; keep diffs focused
+    - Note migration impact and CI/security jobs affected
+  tasks:
+    - Checkbox list of small units (ideally ≤2 hours each)
+    - Separate setup, implementation, and verification tasks
+    - Do not mix unrelated foundations in one task line
